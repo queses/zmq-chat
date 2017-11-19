@@ -1,0 +1,5 @@
+.env
+target/*
+.idea/
+src/main/resources/
+src/test/

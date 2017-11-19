@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>qss.zmqchat</groupId>
+    <artifactId>server</artifactId>
+    <version>0.1.0</version>
+
+    <!-- Set new (or redefine) propetries here and then use it like ${prop.name}:-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.zeromq</groupId>
+            <artifactId>jeromq</artifactId>
+            <version>0.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.shyiko.dotenv</groupId>
+            <artifactId>dotenv</artifactId>
+            <version>[0.1.1, 1.0.0)</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Use external repository if you want to:-->
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>jitpack.io</id>-->
+            <!--<url>https://jitpack.io</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
+
+    <build>
+        <plugins>
+            <!-- Set JDK version:-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- Make JAR-file executable:-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <!-- Here you can specify custom .jar name:-->
+                    <finalName>${project.artifactId}</finalName>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- Set the main class relative to `./src/main/java` (e.g. org.pkg.Main):-->
+                            <mainClass>Main</mainClass>
+                        </manifest>
+                        <!-- You can add custom manifest versions here (example for Vert.x):-->
+                        <!--<manifestEntries>-->
+                          <!--<Main-Verticle>${vertx.main-verticle}</Main-Verticle>-->
+                        <!--</manifestEntries>-->
+                      </archive>
+                </configuration>
+            </plugin>
+            <!-- Archive all dependencies into `./target/lib`:-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
