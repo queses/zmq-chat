@@ -1,10 +1,7 @@
 import javafx.application.Platform;
-import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
-import org.zeromq.ZMQ.Poller;
 import org.zeromq.ZMQ.Socket;
 import org.zeromq.ZMQException;
-import org.zeromq.ZMsg;
 
 public class ZeroClient {
 
@@ -14,10 +11,10 @@ public class ZeroClient {
     private ZMQ.Context context;
     private ZMQ.Socket socket;
     private ZMQ.Socket displaySocket;
-    private MainController controller;
+    private ChatController controller;
     private String topic = "[main]";
 
-    ZeroClient(MainController pmController) {
+    ZeroClient(ChatController pmController) {
         controller = pmController;
         init();
     }
@@ -29,7 +26,6 @@ public class ZeroClient {
         System.out.println("Connecting to hello world server");
 
         socket = context.socket(ZMQ.PUSH);
-//        socket.setPlainUsername("Man");
 
         displaySocket = context.socket(ZMQ.SUB);
         displaySocket.subscribe(topic.getBytes());
@@ -44,10 +40,6 @@ public class ZeroClient {
         System.out.println("Closing connection");
         socket.close();
         context.term();
-    }
-
-    public Socket getSocket() {
-        return socket;
     }
 
     void send (String message) {
@@ -65,12 +57,12 @@ public class ZeroClient {
     private void startListenerThread() {
         Thread listenerThread = new Thread(() -> {
             byte[] reply;
-//            String str;
             while (true) {
                 try {
                     Thread.sleep(100);
                     reply = displaySocket.recv(0);
                     if (reply.length > 0) {
+//                        System.out.println("UN:" + displaySocket.getPlainUsername());
                         final String str = new String(reply, ZMQ.CHARSET).replace(topic, "");
                         Platform.runLater(() -> {
                             controller.onSocketMessage(str);
@@ -86,6 +78,10 @@ public class ZeroClient {
             }
         });
         listenerThread.start();
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 
 }
