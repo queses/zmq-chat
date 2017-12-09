@@ -55,12 +55,12 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <!-- Set the main class relative to `./src/main/java` (e.g. org.pkg.Main):-->
-                            <mainClass>Main</mainClass>
+                            <!-- Set the main class relative to `./src/main/java` (e.g. org.pkg.chat.ChatApp):-->
+                            <mainClass>chat.ChatApp</mainClass>
                         </manifest>
                         <!-- You can add custom manifest versions here (example for Vert.x):-->
                         <!--<manifestEntries>-->
-                          <!--<Main-Verticle>${vertx.main-verticle}</Main-Verticle>-->
+                          <!--<chat.ChatApp-Verticle>${vertx.main-verticle}</chat.ChatApp-Verticle>-->
                         <!--</manifestEntries>-->
                       </archive>
                 </configuration>

@@ -1,4 +1,4 @@
-package message;
+package chat.message;
 
 public class Message {
     public String text;

@@ -1,3 +1,5 @@
+package utils;
+
 import com.github.shyiko.dotenv.DotEnv;
 
 import java.util.Map;
@@ -16,15 +18,15 @@ public final class AppEnv {
         env = DotEnv.load();
     }
 
-    static synchronized String get(String key) {
+    public static synchronized String get(String key) {
         return getEnv().get(key);
     }
 
-    static synchronized Map<String, String> getEnv() {
+    public static synchronized Map<String, String> getEnv() {
         return getInstance().env;
     }
 
-    static synchronized AppEnv getInstance() {
+    public static synchronized AppEnv getInstance() {
         if (_instance == null)
             synchronized (AppEnv.class) {
                 if (_instance == null) _instance = new AppEnv();

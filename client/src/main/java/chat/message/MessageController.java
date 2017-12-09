@@ -1,4 +1,4 @@
-package message;
+package chat.message;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

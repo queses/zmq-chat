@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox prefHeight="221.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+<VBox prefHeight="221.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.LoginController">
    <children>
       <StackPane prefHeight="123.0" prefWidth="600.0">
          <children>
             <ImageView blendMode="MULTIPLY" fitHeight="115.0" fitWidth="337.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo.png" />
+                  <Image url="@../img/logo.png" />
                </image>
             </ImageView>
          </children>

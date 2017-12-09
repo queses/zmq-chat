@@ -1,17 +1,15 @@
-package message;
+package chat.message;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
-
-import java.io.IOException;
 
 public class MessageCellFactory extends ListCell<Message> {
     private Node graphic;
     private final MessageController controller;
 
     public MessageCellFactory() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/message.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/chat/fxml/_message.fxml"));
         try {
             graphic = loader.load();
         } catch (Exception err) {

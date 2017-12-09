@@ -2,7 +2,7 @@
 *| bot | java | boilerplate | slack | maven |*
 
 ## Overview
-You can find here a not very smart bot for Slack, written in Java. Just send a friendly message to it and it will use it's all graceful mind and computing power to reply you "Hello, $username".
+You can find here a not very smart bot for Slack, written in Java. Just send a friendly chat.message to it and it will use it's all graceful mind and computing power to reply you "Hello, $username".
 
 ![Image](https://i.imgur.com/oDxWnRn.png)
 

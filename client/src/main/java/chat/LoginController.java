@@ -1,4 +1,5 @@
-import javafx.application.Application;
+package chat;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -7,7 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    private Main app;
+    private ChatApp app;
 
     @FXML
     TextField nameField;
@@ -19,12 +20,10 @@ public class LoginController implements Initializable {
     public void onEnterAction() {
         String userName = nameField.getText();
         System.out.println(userName);
-        if (this.app != null) {
-            app.onEnterUsername(userName);
-        }
+        ChatPubSub.getInstance().publish(ChatConstants.EVENT_LOGIN, userName);
     }
 
-    public void setApp(Main app) {
+    public void setApp(ChatApp app) {
         this.app = app;
     }
 
