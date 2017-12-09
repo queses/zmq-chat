@@ -12,8 +12,6 @@ import javafx.application.Application;
 import utils.PubSub;
 import zero.ZeroClient;
 
-//  Freelance client - Model 1
-//  Uses REQ socket to query one or more services
 public class ChatApp extends Application {
     private ChatWorker chatWorker;
     private ChatController chatController;
@@ -39,7 +37,7 @@ public class ChatApp extends Application {
     }
 
     public void createChatController() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/chat/fxml/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/chat/fxml/chat.fxml"));
         Parent root = loader.load();
         chatController = loader.getController();
         chatScene = new Scene(root);

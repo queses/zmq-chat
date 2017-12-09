@@ -14,7 +14,6 @@
           <option name="pluginClasspaths">
             <array />
           </option>
-          <option name="version" value="true" />
         </compilerArguments>
       </configuration>
     </facet>
@@ -30,9 +29,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.2" level="project" />
     <orderEntry type="library" name="Maven: org.zeromq:jeromq:0.4.3" level="project" />
     <orderEntry type="library" name="Maven: org.zeromq:jnacl:0.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.shyiko.dotenv:dotenv:0.1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.2" level="project" />
   </component>
 </module>

@@ -56,6 +56,7 @@ public class ChatController implements Initializable {
     public void onSendAction() {
         String messageText = chatInput.getCharacters().toString();
         Message message = new Message(messageText, userName);
+        message.setCurrentDate();
         String json = new Gson().toJson(message);
         System.out.println(json);
         ChatPubSub.getInstance().publish(ChatConstants.EVENT_MESSAGE_SENT, json);
@@ -66,7 +67,9 @@ public class ChatController implements Initializable {
         final String message = eventText.replace(String.format("[%s]", ChatConstants.MAIN_TOPIC), "");
         System.out.println("@ " + message);
         noMessagesLabel.setVisible(false);
-        messages.add(new Gson().fromJson(message, Message.class));
+        Message messageObj = new Gson().fromJson(message, Message.class);
+        messages.add(messageObj);
+//        messages.add(new Gson().fromJson(message, Message.class));
     }
 
     public void setUserName(String userName) {
