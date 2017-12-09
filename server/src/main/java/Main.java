@@ -4,32 +4,31 @@ import org.zeromq.ZMQ.Socket;
 import org.zeromq.ZMsg;
 import org.zeromq.ZFrame;;
 
-//
-//  Hello World server in Java
-//  Binds REP socket to tcp://*:5555
-//  Expects "Hello" from client, replies with "World"
-//
+/**
+ * Сервер можно сделать мультипоточным:
+ * https://github.com/zeromq/jeromq/blob/master/src/test/java/guide/mtserver.java
+ */
 public class Main {
     public static void main(String[] args) throws Exception
     {
         ZMQ.Context context = ZMQ.context(1);
 
         //  Socket to talk to clients
-        ZMQ.Socket socket = context.socket(ZMQ.REP);
+        ZMQ.Socket socket = context.socket(ZMQ.PULL);
+        ZMQ.Socket displaySocket = context.socket(ZMQ.PUB);
 
         socket.bind("tcp://*:5555");
+        displaySocket.bind("tcp://*:5556");
 
         while (!Thread.currentThread().isInterrupted()) {
 
             byte[] reply = socket.recv(0);
-            System.out.println("Received " + ": [ " + new String(reply, ZMQ.CHARSET) + " ]");
+            String str = new String(reply, ZMQ.CHARSET);
+            System.out.println("Received " + ": [ " + str + " ]");
+            
+            displaySocket.send("[main]" + str, 0);
 
-            //  Create a "Hello" message.
-            // String request = "world";
-            // Send the message
-            socket.send(reply, 0);
-
-            Thread.sleep(1000); //  Do some 'work'
+            Thread.sleep(100); //  Do some 'work'
         }
 
         socket.close();

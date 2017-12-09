@@ -1,4 +1,4 @@
-artifact_id = zmqchatclient # set your jar name here
+artifact_id = client # set your jar name here
 
 env:
     @sh env.sh

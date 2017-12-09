@@ -10,8 +10,8 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "Main",
-            "projectName": "zmqchat",
-            "args": "tcp://localhost:21"
+            "projectName": "server",
+            "args": "tcp://localhost:5555"
         },
         {
             "type": "java",
