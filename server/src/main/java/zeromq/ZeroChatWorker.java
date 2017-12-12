@@ -31,7 +31,7 @@ public class ZeroChatWorker implements ChatWorker {
         displaySocket = context.socket(ZMQ.PUB);
 
         String sendAddr = Optional.ofNullable(AppEnv.get("SEND_SOCKET_ADDR")).orElse("tcp://*:5555");
-        String displayAddr = Optional.ofNullable(AppEnv.get("SEND_SOCKET_ADDR")).orElse("tcp://*:5556");
+        String displayAddr = Optional.ofNullable(AppEnv.get("DISPLAY_SOCKET_ADDR")).orElse("tcp://*:5556");
         socket.bind(sendAddr);
         displaySocket.bind(displayAddr);
 

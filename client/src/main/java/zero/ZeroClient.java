@@ -52,7 +52,7 @@ public class ZeroClient implements ChatWorker {
         displaySocket.subscribe(String.format("[%s]", ChatConstants.MAIN_TOPIC).getBytes());
 
         socket.connect(Optional.ofNullable(AppEnv.get("SEND_SOCKET_ADDR")).orElse("tcp://*:5555"));
-        displaySocket.connect(Optional.ofNullable(AppEnv.get("SEND_SOCKET_ADDR")).orElse("tcp://*:5556"));
+        displaySocket.connect(Optional.ofNullable(AppEnv.get("DISPLAY_SOCKET_ADDR")).orElse("tcp://*:5556"));
 
         listenerThread = getListenerThread();
         listenerThread.start();
